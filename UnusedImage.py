@@ -5,12 +5,14 @@ import re
 
 #***************************************************************************
 
-imageSet = glob.glob('hjclass/Resources/images.xcassets/*/*.imageset')
-imageOrigin = glob.glob('hjclass/Resources/Images/*/*.png')
+#must set the imageasset path
+imageSet = glob.glob('Resources/images.xcassets/*/*.imageset')
 
+#option ignore the files
 ignores = {r'image_\d+'}
 
-sourcePath = '/Users/hj/git_project/HJNetworkSchool/hjclass'
+# must set the source code path
+sourcePath = ''
 
 #***************************************************************************
 
@@ -58,7 +60,5 @@ def ignoreFile(str):
 
 
 if __name__ == '__main__':
-
     findUnusedResource(imageSet)
-    #find_un_used(imageOrigin)
 
