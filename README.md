@@ -1,5 +1,7 @@
 # iOSThin
-How to reduce the IPA size
+我们在开发iOS的过程中，随着业务和功能的持续更新，人员的流动，第三方库的随意添加，App就是出于一个只有添加没有删除的，会导致App大小持续增加，所以在瘦身App是每个App必修的课程
+
+# 如何解决
 
 * 应用内资源
 
@@ -24,10 +26,9 @@ How to reduce the IPA size
 
      * Bitcode
      
-     Bitcode类似于一个中间码，被上传到applestore之后，苹果会根据下载应用的用户的手机指令集类型生成只有该指令集的二进制，进行下发。从而达到精简安装包体积的目的,__需要注意的是如果打开这个开关，第三方库都需要支持，如果一个没开，就不能使用__
-    
-    
-    ![bit code](https://lowlevelbits.org/img/bitcode-demystified/app_thinning.png)
+     
+     Bitcode类似于一个中间码，被上传到applestore之后，苹果会根据下载应用的用户的手机指令集类型生成只有该指令集的二进制，进行下发。从而达到精简安装包体积的目的,__需要注意的是如果打开这个开关，第三方库都需要支持，如果一个没开，就不能使用__
+![bit code](https://lowlevelbits.org/img/bitcode-demystified/app_thinning.png)
     
 
 * 代码优化
