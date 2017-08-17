@@ -5,23 +5,26 @@
 
 * 应用内资源
 
-    * 用脚本来找到资源没有在程序中没有使用的资源,注意可能存在误伤的情况，记得让测试认真过下.
+    > 用脚本来找到资源没有在程序中没有使用的资源,注意可能存在误伤的情况，记得让测试认真过下.
     
     在这里我用一个Python脚本来找出没有被用到的图片，然后删除掉，在使用之前需要配置下，资源目录和源码目录即可:
 ```python
 #***************************************************************************
+#must set the imageasset path
 imageSet = glob.glob('Resources/images.xcassets/*/*.imageset')
 
+#option ignore the files
 ignores = {r'image_\d+'}
 
-sourcePath = '/Users/xxx/git_project/sourceFolder'
+# must set the source code path
+sourcePath = ''
 #***************************************************************************
 ```
-    * 网络下载资源，比如皮肤这种情况.
+    > 网络下载资源，比如皮肤这种情况.
     
-    * 压缩图片,js,html,audio,video.
+    > 压缩图片,js,html,audio,video.
     
-    * On-Demand Resources
+    > On-Demand Resources
     
     iOS提供按需加载资源方案，iOS9以后才支持的,以tags来管理，除了Required的资源，其余都按需下载下来，这部分资源存储在App Store或者Cloud
     [具体文档在这里](https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/index.html#//apple_ref/doc/uid/TP40015083-CH2-SW1)
