@@ -1,15 +1,12 @@
 # iOSThin
 我们在开发iOS的过程中，随着业务和功能的持续更新，人员的流动，第三方库的随意添加，App就是出于一个只有添加没有删除的，会导致App大小持续增加，所以在瘦身App是每个App必修的课程
 
-# 如何解决
+## 应用内资源
 
-* 应用内资源
-
-    > 用脚本来找到资源没有在程序中没有使用的资源,注意可能存在误伤的情况，记得让测试认真过下.
+> 用脚本来找到资源没有在程序中没有使用的资源,注意可能存在误伤的情况，记得让测试认真过下.
     
     在这里我用一个[Python脚本](https://github.com/jezzmemo/iOSThin/blob/master/UnusedImage.py)来找出没有被用到的图片，然后删除掉，在使用之前需要配置下，资源目录和源码目录即可:
 ```python
-#***************************************************************************
 #must set the imageasset path
 imageSet = glob.glob('Resources/images.xcassets/*/*.imageset')
 
@@ -18,7 +15,6 @@ ignores = {r'image_\d+'}
 
 # must set the source code path
 sourcePath = ''
-#***************************************************************************
 ```
 ```sh
 python UnusedImage.py
@@ -35,7 +31,7 @@ python UnusedImage.py
 iOS提供按需加载资源方案，iOS9以后才支持的,以tags来管理，除了Required的资源，其余都按需下载下来，这部分资源存储在App Store或者Cloud
 [具体文档在这里](https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/index.html#//apple_ref/doc/uid/TP40015083-CH2-SW1)
 
-* 优化编译选项
+## 优化编译选项
 
     `Strip Linked Product`
     
@@ -59,7 +55,7 @@ Bitcode类似于一个中间码，被上传到applestore之后，苹果会根据
 ![bit code](https://lowlevelbits.org/img/bitcode-demystified/app_thinning.png)
     
 
-* 代码优化
+## 代码优化
 
     * 建议工程不要swift和oc共存的情况，现在我们有很少量的swift代码，会导致app会几个swift依赖库，如果只有OC代码，可以介绍几M空间大小.
     * 空函数及默认实现的函数都可以删掉
