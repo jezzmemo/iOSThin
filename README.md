@@ -24,10 +24,10 @@
     
     `Symbols Hidden by Default`
 
-     * Bitcode
+    `Bitcode`
      
-     
-     Bitcode类似于一个中间码，被上传到applestore之后，苹果会根据下载应用的用户的手机指令集类型生成只有该指令集的二进制，进行下发。从而达到精简安装包体积的目的,__需要注意的是如果打开这个开关，第三方库都需要支持，如果一个没开，就不能使用__
+Bitcode类似于一个中间码，被上传到applestore之后，苹果会根据下载应用的用户的手机指令集类型生成只有该指令集的二进制，进行下发。从而达到精简安装包体积的目的,__需要注意的是如果打开这个开关，第三方库都需要支持，如果一个没开，就不能使用__
+
 ![bit code](https://lowlevelbits.org/img/bitcode-demystified/app_thinning.png)
     
 
