@@ -7,7 +7,6 @@
     
 在这里我用一个[Python脚本](https://github.com/jezzmemo/iOSThin/blob/master/UnusedImage.py)来找出没有被用到的图片，然后删除掉，在使用之前需要配置下，资源目录和源码目录即可:
 ```python
-#***************************************************************************
 #must set the imageasset path
 imageSet = glob.glob('Resources/images.xcassets/*/*.imageset')
 
@@ -16,7 +15,6 @@ ignores = {r'image_\d+'}
 
 # must set the source code path
 sourcePath = ''
-#***************************************************************************
 ```
 ```sh
 python UnusedImage.py
