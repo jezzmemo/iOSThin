@@ -81,6 +81,44 @@ Bitcode类似于一个中间码，被上传到applestore之后，苹果会根据
 
 > 未使用类的扫描
 
+在网上看到很多关于这个点的说明，但是说的不够全，最详细的可能属于腾讯的一篇文章，但是还是不够细，我仔细看二进制数据和otool -o出来的数据才看到规律，先说下步骤:
+
+```sh
+otool -s -v __DATA	__objc_classlist xxx.app/xxx
+```
+以上命令会显示出，当前app的`所有`的类的地址
+
+```sh
+otool -s -v __DATA	__objc_classrefs xxx.app/xxx
+```
+以上命令会显示出，当前app的`所有使用到`的类的地址
+
+__两个数据集合的差集就是没有用到的类__
+
+```sh
+otool -o xxx.app/xxx
+```
+输出所有的类和地址的详细信息文件，给一段样本出来:
+```
+030377ec `0x32fe614`
+           isa 0x32fe600
+    superclass 0x0
+         cache 0x0
+        vtable 0x0
+          data 0x303ea68 (struct class_ro_t *)
+                    flags 0x80
+            instanceStart 4
+             instanceSize 4
+               ivarLayout 0x0
+                     name 0x2d320d2 HJRCloudNoticeModel
+              baseMethods 0x0 (struct method_list_t *)
+            baseProtocols 0x0
+                    ivars 0x0
+           weakIvarLayout 0x0
+           baseProperties 0x0
+```
+0x32fe614是在所有和所有用到的类的地址，查出所对应的name,即可知道这个地址对应的类名.
+
 > 合并类似的第三方库
 
 公司规模大了以后，我们都知道进行拆分，比如有专门做基础模块的部分，有专门做业务的部门，两个部门之间如果只有对接，没有比较好的约束和沟通，就会导致大家各自做各自的，不关心有些组件是否重复，所以这个问题，一定要有一个给力的负责人，才能约束好各个部分，从而统一，尽量少的出现重复的情况.
