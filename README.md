@@ -62,11 +62,11 @@ Bitcode类似于一个中间码，被上传到applestore之后，苹果会根据
 ## 代码优化
 > 分析Link Map文件
 
-首先打开`Write Link Map File`,然后设置生成的路径，即可获取到Link Map.txt,这里就不讲内容部分了，网上讲解还是比较多的，如果有兴趣的朋友可以[查看这边](http://blog.cnbang.net/tech/2296/),在这里我用了一个现成的[Python脚本](https://github.com/jezzmemo/iOSThin/blob/master/ScanLinkMap.py)，会列出所有文件的方法的大小,还可以显示模块的大小，根据这些大小，你可以参考舍弃那些以及每次版本的对比，那个环节产生的空间最大.
+首先打开`Write Link Map File`开关,然后设置生成的路径，即可获取到Link Map.txt,这里就不讲内容部分了，网上讲解还是比较多的，如果有兴趣的朋友可以[查看这边](http://blog.cnbang.net/tech/2296/),在这里我用了一个现成的[Python脚本](https://github.com/jezzmemo/iOSThin/blob/master/ScanLinkMap.py)，会列出所有文件的方法的大小,还可以显示模块的大小，根据这些大小，你可以参考舍弃那些以及每次版本的对比，那个环节产生的空间最大.
 
 > 建议工程不要swift和oc共存的情况
 
-现在我们有很少量的swift代码，会导致app会几个swift依赖库，如果只有OC代码，可以减少几M空间大小.
+现在我们有很少量的swift代码，会导致app会几个swift依赖库，如果只有OC代码，可以减少几M空间大小，另外多说一句，如果作为学习新技术的话，我个人不排斥Swift，但是公司里大量用了OC，如果公司没有意向转向Swift的话，还是继续保持OC，如果有大量转向Swift的话，是可以接受一段时间共存的情况.
 
 > 建议不要使用XIB，有以下原因
 
@@ -76,6 +76,8 @@ Bitcode类似于一个中间码，被上传到applestore之后，苹果会根据
 
 
 > 空函数及默认实现的函数都可以删掉
+
+我看到很多文章都提到会删除[没有用到的selector](https://github.com/nst/objc_cover/blob/master/objc_cover.py)，但是这个太麻烦了，因为这里涉及到property还有就是第三方库的内部方法，所以去掉空函数更多实用
 
 > 未使用类的扫描
 
