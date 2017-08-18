@@ -117,7 +117,7 @@ otool -o xxx.app/xxx
            weakIvarLayout 0x0
            baseProperties 0x0
 ```
-0x32fe614是在所有和所有用到的类的地址，查出所对应的name,即可知道这个地址对应的类名,最后给出查看没有使用过的类脚本:[UnusedImage.py](https://github.com/jezzmemo/iOSThin/blob/master/UnusedImage.py)
+0x32fe614是在所有和所有用到的类的地址，查出所对应的name,即可知道这个地址对应的类名,最后给出查看没有使用过的类脚本:[UnusedClass.py](https://github.com/jezzmemo/iOSThin/blob/master/UnusedClass.py)
 
 > 合并类似的第三方库
 
