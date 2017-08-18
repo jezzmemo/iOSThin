@@ -110,7 +110,7 @@ otool -o xxx.app/xxx
             instanceStart 4
              instanceSize 4
                ivarLayout 0x0
-                     name 0x2d320d2 HJRCloudNoticeModel
+                     name 0x2d320d2 NoticeModel
               baseMethods 0x0 (struct method_list_t *)
             baseProtocols 0x0
                     ivars 0x0
