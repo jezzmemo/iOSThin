@@ -5,7 +5,7 @@
 
 > 用脚本来找到资源没有在程序中没有使用的资源,注意可能存在误伤的情况，记得让测试认真过下.
     
-在这里我用一个[Python脚本](https://github.com/jezzmemo/iOSThin/blob/master/UnusedImage.py)来找出没有被用到的图片，然后删除掉，在使用之前需要配置下，资源目录和源码目录即可:
+在这里我用一个[UnusedImage.py](https://github.com/jezzmemo/iOSThin/blob/master/UnusedImage.py)来找出没有被用到的图片，然后删除掉，在使用之前需要配置下，资源目录和源码目录即可:
 ```python
 #must set the imageasset path
 imageSet = glob.glob('Resources/images.xcassets/*/*.imageset')
@@ -100,7 +100,7 @@ otool -o xxx.app/xxx
 ```
 输出所有的类和地址的详细信息文件，给一段样本出来:
 ```
-030377ec `0x32fe614`
+030377ec 0x32fe614
            isa 0x32fe600
     superclass 0x0
          cache 0x0
@@ -117,7 +117,7 @@ otool -o xxx.app/xxx
            weakIvarLayout 0x0
            baseProperties 0x0
 ```
-0x32fe614是在所有和所有用到的类的地址，查出所对应的name,即可知道这个地址对应的类名.
+0x32fe614是在所有和所有用到的类的地址，查出所对应的name,即可知道这个地址对应的类名,最后给出查看没有使用过的类脚本:[UnusedImage.py](https://github.com/jezzmemo/iOSThin/blob/master/UnusedImage.py)
 
 > 合并类似的第三方库
 
@@ -125,3 +125,4 @@ otool -o xxx.app/xxx
 
 ## 总结
 
+最后简单总结下，给App瘦身是多部门配合下才能达到比较好的效果，无论是UI,交互，还是需求，最后还有我们程序之间的约束和规范，都是App较小空间的因素，所以给App瘦身是一个综合性的工作，不只是一个技术性的工作.
