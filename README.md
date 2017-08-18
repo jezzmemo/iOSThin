@@ -1,4 +1,4 @@
-# iOSThin
+# iOS瘦身
 我们在开发iOS的过程中，随着业务和功能的持续更新，人员的流动，第三方库的随意添加，App就是出于一个只有添加没有删除的，会导致App大小持续增加，所以在瘦身App是每个App必修的课程
 
 ## 应用内资源
@@ -7,7 +7,6 @@
     
 在这里我用一个[Python脚本](https://github.com/jezzmemo/iOSThin/blob/master/UnusedImage.py)来找出没有被用到的图片，然后删除掉，在使用之前需要配置下，资源目录和源码目录即可:
 ```python
-#***************************************************************************
 #must set the imageasset path
 imageSet = glob.glob('Resources/images.xcassets/*/*.imageset')
 
@@ -16,10 +15,9 @@ ignores = {r'image_\d+'}
 
 # must set the source code path
 sourcePath = ''
-#***************************************************************************
 ```
 ```sh
-python UnusedImage.py
+jezz$python UnusedImage.py
 ```
 
 > 压缩图片,js,html,audio,video,plist，网络下载资源，比如皮肤这种情况.
