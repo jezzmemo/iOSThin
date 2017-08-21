@@ -9,7 +9,7 @@ import re
 imageSet = glob.glob('Resources/images.xcassets/*/*.imageset')
 
 #option ignore the files
-ignores = {r'image_\d+'}
+ignores = {r'loading_\d+'}
 
 # must set the source code path
 sourcePath = ''
@@ -23,12 +23,13 @@ def findUnusedResource(imageFolder):
         pic_name = img_names[i]
 
         if ignoreFile(pic_name):
-            print 'ignore file:%s' (imageFolder[i])
+            # print 'ignore file:%s' % (imageFolder[i])
             continue
         result = checkContentFromFolder(pic_name,sourcePath)
         if not result:
             unused_imgs.append(imageFolder[i])
-            print 'remove %s' % (imageFolder[i])
+            print 'remove %s' % (pic_name)
+            # print 'remove %s' % (imageFolder[i])
             os.system('rm -rf %s' % (imageFolder[i]))
 
 
@@ -41,10 +42,15 @@ def findUnusedResource(imageFolder):
 def checkContentFromFolder(content,folder):
 
     for dname, dirs, files in os.walk(folder):
-
         for fname in files:
             fpath = os.path.join(dname, fname)
 
+            if fpath.find("/.git/") != -1:
+                print fpath
+                continue
+            if fpath.find("Contents.json") != -1:
+                # print fpath
+                continue
             with open(fpath,'r') as f:
                 s = f.read()
                 if content in s:

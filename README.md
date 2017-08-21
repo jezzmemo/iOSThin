@@ -77,7 +77,7 @@ Bitcode类似于一个中间码，被上传到applestore之后，苹果会根据
 
 > 空函数及默认实现的函数都可以删掉
 
-我看到很多文章都提到会删除[没有用到的selector](https://github.com/nst/objc_cover/blob/master/objc_cover.py)，但是这个太麻烦了，因为这里涉及到property还有就是第三方库的内部方法，所以去掉空函数更多实用
+我看到很多文章都提到会删除[没有用到的selector](https://github.com/nst/objc_cover/blob/master/objc_cover.py)，但是这个太麻烦了，因为这里涉及到property还有就是第三方库的内部方法，所以去掉空函数更加实用
 
 > 未使用类的扫描
 
