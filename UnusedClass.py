@@ -4,11 +4,13 @@
 #
 #
 
+import os
+import sys
 
 
-def findAllClass(classFile):
+def findAllClass(file):
 
-	file = open(classFile)
+	# file = open(classFile)
 	result = False
 
 	returnResult = []
@@ -31,9 +33,9 @@ def findAllClass(classFile):
 				
 	return returnResult
 
-def findUsedClass(usedClassFile):
+def findUsedClass(file):
 	
-	file = open(usedClassFile)
+	# file = open(usedClassFile)
 	result = False
 
 	returnResult = []
@@ -59,9 +61,9 @@ def findUsedClass(usedClassFile):
 	return returnResult
 
 
-def findClassNameByAddress(addressArray,addressMap):
+def findClassNameByAddress(addressArray,file):
 
-	file = open(addressMap,'r')
+	# file = open(addressMap,'r')
 
 	for address in addressArray:
 		file.seek(0)
@@ -78,26 +80,80 @@ def findClassNameByAddress(addressArray,addressMap):
 				break
 
 
+def checkAppBinary(argv):
+	if len(argv) < 2:
+		print '输入iOS本地地址'
+		return False
+
+	path = argv[1]
+
+	if not os.path.isfile(path):
+		print '文件不存在'
+		return False
+	return True
+
+def readAllClass(path):
+	file = os.popen('otool -v -s __DATA	__objc_classlist %s' % (path))
+
+	return file
+
+def readUsedClass(path):
+	file = os.popen('otool -v -s __DATA	__objc_classrefs %s' % (path))
+	return file
+
+def readClassName(path):
+	file = os.popen('otool -o %s' % (path))
+
+	content = file.read()
+	file.close()
+
+	fo = open('map.txt', "w")
+	fo.write(content)
+	fo.close()
+	# os.system('echo "%s" > %s' % (content,text_path))
+
+	return open(os.path.abspath('map.txt'))
+
 
 if __name__ == '__main__':
 
+	if checkAppBinary(sys.argv):
+		path = sys.argv[1]
+
+		allClassFile = readAllClass(path)
+		allClass = findAllClass(allClassFile)
+
+		print 'All class size:%d' % (len(allClass))
+
+		usedClassFile = readUsedClass(path)
+		usedClass = findAllClass(usedClassFile)
+
+		print 'Used class size:%d' % (len(usedClass))
+
+		unUsedClass = list(set(allClass).difference(set(usedClass)))
+
+		if len(unUsedClass) > 0:
+			classNameFile = readClassName(path)
+			findClassNameByAddress(unUsedClass,classNameFile)
+
+
 
   #otool -s -v __DATA	__objc_classlist xxx.app/xxx > allClass.txt
-	allClass = findAllClass('allClass.txt')
+	# allClass = findAllClass('allClass.txt')
 
-	print 'All class size:%d' % (len(allClass))
+	# print 'All class size:%d' % (len(allClass))
 
   #otool -s -v __DATA	__objc_classrefs xxx.app/xxx > usedClass.txt
-	usedClass = findUsedClass('usedClass.txt')
+	# usedClass = findUsedClass('usedClass.txt')
 
-	print 'Used class size:%d' % (len(usedClass))
+	# print 'Used class size:%d' % (len(usedClass))
 
-	unUsedClass = list(set(allClass).difference(set(usedClass)))
+	# unUsedClass = list(set(allClass).difference(set(usedClass)))
 
-	print 'UnUsed class size:%d' % (len(unUsedClass))
+	# print 'UnUsed class size:%d' % (len(unUsedClass))
 
-	if len(unUsedClass) > 0
+	# if len(unUsedClass) > 0
     #otool -o xxx.app/xxx > map.txt
-		findClassNameByAddress(unUsedClass,'map.txt')
+		# findClassNameByAddress(unUsedClass,'map.txt')
 
 
