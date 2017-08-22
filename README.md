@@ -33,6 +33,8 @@ iOS提供按需加载资源方案，iOS9以后才支持的,以tags来管理，�
 ## 优化编译选项
 
 > Strip Linked Product
+
+> Separate Strip
     
 > Deployment Postprocessing
 
