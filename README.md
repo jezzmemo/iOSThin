@@ -20,7 +20,7 @@ sourcePath = ''
 jezz$python UnusedImage.py
 ```
 
-__减少6M左右，注意ignores是不需要删除的，如:image_%d,这种是找不到的__
+__减少6M左右，注意ignores是不需要删除的，如:`image_%d`,这种是找不到的__
 
 > 压缩图片,js,html,audio,video,plist，网络下载资源，比如皮肤这种情况.
 
