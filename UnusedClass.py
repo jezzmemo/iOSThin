@@ -10,7 +10,6 @@ import sys
 
 def findAllClass(file):
 
-	# file = open(classFile)
 	result = False
 
 	returnResult = []
@@ -35,7 +34,6 @@ def findAllClass(file):
 
 def findUsedClass(file):
 	
-	# file = open(usedClassFile)
 	result = False
 
 	returnResult = []
@@ -82,7 +80,7 @@ def findClassNameByAddress(addressArray,file):
 
 def checkAppBinary(argv):
 	if len(argv) < 2:
-		print '输入iOS本地地址'
+		print '输入有效地址'
 		return False
 
 	path = argv[1]
@@ -110,7 +108,6 @@ def readClassName(path):
 	fo = open('map.txt', "w")
 	fo.write(content)
 	fo.close()
-	# os.system('echo "%s" > %s' % (content,text_path))
 
 	return open(os.path.abspath('map.txt'))
 
@@ -136,24 +133,9 @@ if __name__ == '__main__':
 			classNameFile = readClassName(path)
 			findClassNameByAddress(unUsedClass,classNameFile)
 
-
-
-  #otool -s -v __DATA	__objc_classlist xxx.app/xxx > allClass.txt
-	# allClass = findAllClass('allClass.txt')
-
-	# print 'All class size:%d' % (len(allClass))
-
-  #otool -s -v __DATA	__objc_classrefs xxx.app/xxx > usedClass.txt
-	# usedClass = findUsedClass('usedClass.txt')
-
-	# print 'Used class size:%d' % (len(usedClass))
-
-	# unUsedClass = list(set(allClass).difference(set(usedClass)))
-
-	# print 'UnUsed class size:%d' % (len(unUsedClass))
-
-	# if len(unUsedClass) > 0
-    #otool -o xxx.app/xxx > map.txt
-		# findClassNameByAddress(unUsedClass,'map.txt')
+	#Clean map file
+	mapPath = os.path.abspath('map.txt')
+	if os.path.isfile(mapPath):
+		os.remove(mapPath)
 
 
