@@ -30,7 +30,7 @@ def findUnusedResource(imageFolder):
             unused_imgs.append(imageFolder[i])
             print 'remove %s' % (pic_name)
             # print 'remove %s' % (imageFolder[i])
-            os.system('rm -rf %s' % (imageFolder[i]))
+            os.system('rm -rf "%s"' % (imageFolder[i]))
 
 
     text_path = 'unused.log'

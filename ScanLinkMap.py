@@ -12,6 +12,9 @@ import re
 import shutil
 import sys
 
+# 0KB
+THRESHOLD_SIZE = 0.0 
+
 class SymbolModel:
     file = ""
     size = 0
@@ -125,8 +128,10 @@ def buildCombinationResultWithSymbols(symbols):
     sortedSymbols = sortSymbol(combinationMap.values())
 
     for symbol in sortedSymbols:
-        results.append(calSymbol(symbol))
-        totalSize += symbol.size
+        if symbol.size > THRESHOLD_SIZE:
+            results.append(calSymbol(symbol))
+            totalSize += symbol.size
+        
     results.append("总大小: %.2fM" % (totalSize/1024.0/1024.0))
 
     return results

@@ -129,6 +129,8 @@ if __name__ == '__main__':
 
 		unUsedClass = list(set(allClass).difference(set(usedClass)))
 
+		print 'Unused class size:%d' % (len(unUsedClass))
+
 		if len(unUsedClass) > 0:
 			classNameFile = readClassName(path)
 			findClassNameByAddress(unUsedClass,classNameFile)
